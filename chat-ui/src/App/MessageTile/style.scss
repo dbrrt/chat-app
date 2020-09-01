@@ -1,0 +1,18 @@
+.message-tile {
+    border: solid 1px black;
+    padding: 3em;
+    margin: 1em;
+}
+
+#message-tile:after,
+#message-tile::after {
+    position: absolute;
+    top: 5px;
+    left: -5px;
+    content: '';
+    width: 0;
+    height: 0;
+    border-right: solid 5px rgba(0,0,0,.8);
+    border-bottom: solid 5px transparent;
+    border-top: solid 5px transparent;
+}
