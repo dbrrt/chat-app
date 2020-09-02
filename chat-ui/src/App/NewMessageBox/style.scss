@@ -1,0 +1,30 @@
+.message-box {
+    position: relative;
+    background-image: linear-gradient(to right top, #0d1521, #110f1a, #100a12, #0b0408, #000000);    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 150px;
+    width: 100%;
+    text-align: center;
+    padding-top: 2em;
+}
+
+.input-message-box, .input-message-btn {
+    width: 75%;
+    height: 25%;
+    font-size: 30px;
+}
+
+.input-message-btn {
+    cursor: pointer;
+    background: #007bff;
+    border: none;
+    color: white;
+    padding: 5px 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    font-family: 'Ubuntu';
+    border-radius: 30px;
+}

@@ -1,0 +1,19 @@
+.app-container {
+    padding: 1em;
+    
+}
+
+.messages-container {
+    height: 90vh;
+    overflow-y: auto;
+}
+
+html {
+    color: white;
+    background-image: linear-gradient(to right top, #051937, #00236a, #00289d, #0026cf, #1600fd);
+    min-height: 100%;
+}
+
+h3 {
+    font-size: 25px;
+}
