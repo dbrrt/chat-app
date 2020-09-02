@@ -13,7 +13,7 @@ h1, h2, h3, div, span {
 
 @media screen and (min-width: 600px) {
     .message-tile {
-        width: 30%;
+        width: 45%;
     }
 }
 
@@ -69,3 +69,9 @@ h1, h2, h3, div, span {
 hr {
     border-style: ridge;
 }
+
+// Animations
+.message-tile { 
+	animation: flipInX; /* referring directly to the animation's @keyframe declaration */
+	animation-duration: 1s; /* don't forget to set a duration! */
+  }
