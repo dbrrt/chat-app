@@ -22,7 +22,7 @@ export const NewMessageBox = () => {
                 <textarea rows={3} className='input-message-box' />
                 <br />
                 <br />
-                <button className='input-message-btn'>Send Message <FontAwesomeIcon icon={faComment}/></button>
+                <button className='input-message-btn'>Send Message &nbsp;<FontAwesomeIcon icon={faComment}/></button>
             </div>
         </div>
     )

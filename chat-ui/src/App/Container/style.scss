@@ -18,3 +18,16 @@ html {
 h3 {
     font-size: 25px;
 }
+
+.settings-btn {
+    position: absolute;
+    right: 2em;
+    top: 1em;
+    padding: 1em;
+    cursor: pointer;
+    border:solid 0.5px black;
+}
+
+.settings-btn:hover {
+    border:solid 0.5px white;
+}
