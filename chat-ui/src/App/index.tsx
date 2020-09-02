@@ -1,5 +1,6 @@
 import * as React from 'react'
 import {Container} from './Container'
+import { StoreContext, store } from "../store";
 
 const messages = [
     {
@@ -84,4 +85,8 @@ const messages = [
     // },
 ]
 
-export const App = () => <Container messages={messages} />
+export const App = () => (
+    <StoreContext.Provider value={store}>
+        <Container messages={messages} />
+    </StoreContext.Provider>
+)

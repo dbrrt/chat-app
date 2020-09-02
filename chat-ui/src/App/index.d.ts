@@ -18,3 +18,6 @@ export interface IMessageTile {
     isSender: boolean;
     isRecipient: boolean;
 }
+
+// declare module 'socket.io-client';
+

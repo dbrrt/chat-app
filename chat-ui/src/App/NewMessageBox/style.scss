@@ -8,6 +8,7 @@
     width: 100%;
     text-align: center;
     padding-top: 2em;
+    z-index: 2;
 }
 
 .input-message-box, .input-message-btn {
@@ -28,6 +29,10 @@
     font-size: 20px;
     font-family: 'Ubuntu';
     border-radius: 30px;
+}
+
+.input-message-btn:hover {
+    background: #052248;
 }
 
 .close-icon-btn {

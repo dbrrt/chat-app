@@ -31,7 +31,15 @@ export default {
           'Component',
           'PropTypes',
           'Fragment',
-          'createElement'
+          'createElement',
+          'useLayoutEffect',
+          'useEffect',
+          'createContext',
+          'useContext',
+          'useMemo',
+          'useState',
+          'useRef',
+          'useCallback'
         ],
         'node_modules/react-dom/index.js': [
           'render'
