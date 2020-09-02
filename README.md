@@ -8,6 +8,7 @@ Roadmap:
  - Container
  - MessageTile
  - Responsive Design
+ - Integration Redux
  - Modal Overlay
  - Keyboard Events
  - Contact List
