@@ -1,5 +1,6 @@
 export interface IMessage {
-    username: string;
+    sender: string;
+    recipient: string;
     message: {
         type: string;
         payload: string;
@@ -13,5 +14,7 @@ export interface IContainer {
 export interface IMessageTile {
     timestamp: string;
     username: string;
-    message: IMessage
+    message: IMessage;
+    isSender: boolean;
+    isRecipient: boolean;
 }

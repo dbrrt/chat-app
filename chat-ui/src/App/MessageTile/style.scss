@@ -1,18 +1,71 @@
+h1, h2, h3, div, span {
+    font-family: "Ubuntu";
+}
+
+
 .message-tile {
     border: solid 1px black;
     padding: 3em;
     margin: 1em;
+    color: white;
+    font-weight: 900;
 }
 
-#message-tile:after,
-#message-tile::after {
-    position: absolute;
-    top: 5px;
-    left: -5px;
+@media screen and (min-width: 600px) {
+    .message-tile {
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 599px) {
+    .message-tile {
+        width: 75%;
+    }
+}
+
+.message-tile-left {
+	position: relative;
+    background-image: linear-gradient(to right top, #00d449, #09dc50, #11e457, #17ec5f, #1cf466);
+	border-radius: .4em;
+}
+// inspiration: http://projects.verou.me/bubbly/
+.message-tile-left:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-right-color: #3cd872;
+	border-left: 0;
+	border-bottom: 0;
+    margin-top: -5px;
+	margin-left: -10px;
+}
+
+.message-tile-right {
+	position: relative;
+    background-image: linear-gradient(to right top, #1284f0, #288ef4, #3999f7, #49a3fa, #59adfd);
+    border-radius: .4em;
+    float: right;
+}
+// inspiration: http://projects.verou.me/bubbly/
+.message-tile-right:after {   
     content: '';
-    width: 0;
-    height: 0;
-    border-right: solid 5px rgba(0,0,0,.8);
-    border-bottom: solid 5px transparent;
-    border-top: solid 5px transparent;
+	position: absolute;
+	right: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 10px solid transparent;
+	border-left-color: #1284f0;
+	border-right: 0;
+	border-bottom: 0;
+	margin-top: -5px;
+	margin-right: -10px;
+}
+
+hr {
+    border-style: ridge;
 }
