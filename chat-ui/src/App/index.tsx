@@ -10,7 +10,72 @@ const messages = [
             type: 'text',
             payload: 'Hello'
         }
+    },
+    {
+        sender: 'guest002',
+        recipient: 'guest001',
+        message: {
+            type: 'text',
+            payload: 'Hello'
+        }
+    },
+    {
+        sender: 'guest002',
+        recipient: 'guest001',
+        message: {
+            type: 'text',
+            payload: 'Hello'
+        }
+    },
+    {
+        sender: 'guest002',
+        recipient: 'guest001',
+        message: {
+            type: 'text',
+            payload: 'Hello'
+        }
+    },
+    {
+        sender: 'guest002',
+        recipient: 'guest001',
+        message: {
+            type: 'text',
+            payload: 'Hello'
+        }
+    },
+    {
+        sender: 'guest002',
+        recipient: 'guest001',
+        message: {
+            type: 'text',
+            payload: 'Hello'
+        }
+    },
+    {
+        sender: 'guest002',
+        recipient: 'guest001',
+        message: {
+            type: 'text',
+            payload: 'Hello'
+        }
+    },
+    {
+        sender: 'guest002',
+        recipient: 'guest001',
+        message: {
+            type: 'text',
+            payload: 'Hello'
+        }
+    },
+    {
+        sender: 'guest002',
+        recipient: 'guest001',
+        message: {
+            type: 'text',
+            payload: 'Hello'
+        }
     }
+
 ]
 
 export const App = () => (

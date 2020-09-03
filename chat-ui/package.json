@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc && rollup -c",
     "dev": "rollup -cw",
-    "browse": "browser-sync start --s --ss build --index html/index.html --files html/**/*.html,dist/**/*.js --no-notify"
+    "browse": "browser-sync start --s --ss build --index html/index.html --files html/**/*.html,dist/**/*.js --no-notify",
+    "start": "serve ."
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
     "@types/react-dom": "16.9.8",
     "@types/styled-components": "5.1.3",
     "browser-sync": "2.26.12",
+    "express": "^4.17.1",
     "rollup": "2.26.9",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-filesize": "9.0.2",

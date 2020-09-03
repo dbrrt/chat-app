@@ -10,7 +10,7 @@ export const ConfigureUser = () => {
     const [username, setUsername] = React.useState('')
     const dispatch = useDispatch()
 
-    const setUnsafeUsername = React.useCallback((e: any) => {
+    const setUnsafeUsername = React.useCallback(() => {
         dispatch({
             type: SET_UNSAFE_USERNAME,
             username

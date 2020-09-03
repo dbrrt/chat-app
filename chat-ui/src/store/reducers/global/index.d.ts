@@ -4,6 +4,7 @@ export interface IGlobalState {
     clock_display: string;
     quick_message: boolean;
     username: null | string;
+    room: null | string;
   }
   
   export type Action = |
@@ -29,5 +30,12 @@ export interface IGlobalState {
   {
     type: 'SET_UNSAFE_USERNAME'
     username: string | null
-  } 
+  } |
+  {
+    type: 'SET_CHAT_ROOM'
+    room: string | null
+  } |
+  {
+    type: 'SIGN_OUT'
+  }
   

@@ -4,7 +4,9 @@ import {
     TOGGLE_CLOCK_DISPLAY,
     TOGGLE_KEYBOARD_SEND_SHORTCUT,
     RESET_MODAL_SETTINGS_CONFIG,
-    SET_UNSAFE_USERNAME
+    SET_UNSAFE_USERNAME,
+    SET_CHAT_ROOM,
+    SIGN_OUT
 } from './constants'
 import {IGlobalState, Action} from './index.d'
 
@@ -14,11 +16,20 @@ const SETTINGS_MODAL_INIT = {
     quick_message: false
 }
 
+const SETTINGS_USER_INIT = {
+    username: null
+}
+
+const SETTINGS_ROOM_INIT = {
+    room: null
+}
+
 const INIT_STATE: IGlobalState = {
     input_message_box_visible: false,
     settings_modal_visible: false,
     ...SETTINGS_MODAL_INIT,
-    username: null
+    ...SETTINGS_USER_INIT,
+    ...SETTINGS_ROOM_INIT
 }
 
 const reducer = (state: IGlobalState = INIT_STATE, action: Action) => {
@@ -62,6 +73,21 @@ const reducer = (state: IGlobalState = INIT_STATE, action: Action) => {
         return {
             ...state,
             username: action.username
+        }
+    }
+
+    case SET_CHAT_ROOM: {
+        return {
+            ...state,
+            room: action.room
+        }
+    }
+
+    case SIGN_OUT: {
+        return {
+            ...state,
+            ...SETTINGS_USER_INIT,
+            ...SETTINGS_ROOM_INIT
         }
     }
 

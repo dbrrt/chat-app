@@ -7,9 +7,7 @@ export const MessageTile = ({timestamp, username, message, isRecipient}: IMessag
         <div className='message-tile-row' style={{ width: '100%', float: 'left' }}>
             <div className={`message-tile message-tile-${isRecipient ? 'left' : 'right'}`}>
                 {username}  {timestamp} {JSON.stringify(message)}
-                {/* <MessageTileStyled /> */}
             </div>
         </div>
     )
-
 }

@@ -1,11 +1,13 @@
 import * as React from 'react'
-import './style.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes, faWrench } from '@fortawesome/free-solid-svg-icons'
 import { useCallback } from 'react'
 import { TOGGLE_MODAL_SETTINGS, TOGGLE_CLOCK_DISPLAY, TOGGLE_KEYBOARD_SEND_SHORTCUT, RESET_MODAL_SETTINGS_CONFIG } from '../../store/constants'
 import {useDispatch, useMappedState} from '../../store'
 import { ICombinedState } from '../../store/reducers/index.d'
+
+import './style.scss'
+
 
 export const ModalSettings = () => {
     const dispatch = useDispatch()
