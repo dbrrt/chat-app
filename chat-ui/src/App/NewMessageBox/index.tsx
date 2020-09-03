@@ -1,13 +1,12 @@
 import * as React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faTimes } from '@fortawesome/free-solid-svg-icons'
-import './style.scss'
 import { useDispatch } from '../../store'
 import { TOGGLE_INPUT_MESSAGE_BOX } from '../../store/constants'
+import './style.scss'
+
 export const NewMessageBox = () => {
-
     const dispatch = useDispatch()
-
     const toggleInputBox = React.useCallback(() => {
         dispatch({
             type: TOGGLE_INPUT_MESSAGE_BOX,

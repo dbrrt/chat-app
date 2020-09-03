@@ -1,5 +1,5 @@
 import * as React from 'react'
-const {useCallback} = React
+const {useCallback, useEffect} = React
 import {MessageTile} from '../MessageTile'
 import {NewMessageBox} from '../NewMessageBox'
 import {FabButton} from '../FabButton'
@@ -17,11 +17,25 @@ import { useMappedState, useDispatch } from "../../store";
 import {IContainer} from '../index.d'
 import {ICombinedState} from '../../store/reducers/index.d'
 
+import io from 'socket.io-client'
+const ENDPOINT = "http://127.0.0.1:3050";
+
 import './style.scss'
 
 export const Container = ({messages}: IContainer) => {
     const currentUser = ''
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        const socket = io(ENDPOINT);
+        socket.on("FromAPI", (data: any) => {
+          console.log(data)
+          socket.close()
+        })
+    }, [])
+
+
+
     const {inputBoxVisible, modalSettingsVisible, username, room} = useMappedState(
         useCallback(
           (state: ICombinedState) => ({
@@ -60,6 +74,7 @@ export const Container = ({messages}: IContainer) => {
             type: SIGN_OUT
         })
     }, [])
+
 
     return (
         <div className='app-container'>

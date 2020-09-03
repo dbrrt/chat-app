@@ -1,7 +1,7 @@
 import typescript from 'rollup-plugin-typescript'
 import sourceMaps from 'rollup-plugin-sourcemaps'
 import commonjs from 'rollup-plugin-commonjs'
-import { uglify } from 'rollup-plugin-uglify'
+// import { uglify } from 'rollup-plugin-uglify'
 import external from 'rollup-plugin-peer-deps-external'
 import filesize from 'rollup-plugin-filesize'
 import resolve from 'rollup-plugin-node-resolve'
@@ -17,14 +17,20 @@ export default {
     sourcemap: true,
   },
   plugins: [
+    resolve({
+      browser: true,
+      main: true
+    }),
     replace({
       'process.env.NODE_ENV': JSON.stringify( 'production' )
     }),
     typescript(),
     scss(),
-    external(),
+    external([ 'prop-types' ]),
     commonjs({
-      include: ['node_modules/**'],
+      include: [
+        /node_modules/ 
+      ],
       namedExports: {
         'node_modules/react/index.js': [
           'Children',
@@ -43,15 +49,32 @@ export default {
         ],
         'node_modules/react-dom/index.js': [
           'render'
-        ]
+        ],
+        'node_modules/socket.io-client/index.js': [],
+        'node_modules/prop-types/index.js': [
+          'array',
+          'bool',
+          'func',
+          'number',
+          'object',
+          'string',
+          'symbol',
+          'any',
+          'arrayOf',
+          'element',
+          'elementType',
+          'instanceOf',
+          'node',
+          'objectOf',
+          'oneOf',
+          'oneOfType',
+          'shape',
+          'exact',
+        ],
       }
     }),
     sourceMaps(),
-    uglify(),
-    filesize(),
-    resolve({
-      browser: true,
-      main: true
-    })
+    // uglify(),
+    filesize()
   ]
 }
