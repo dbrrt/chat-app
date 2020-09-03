@@ -15,13 +15,13 @@ io.on("connection", (socket: any) => {
   if (interval) {
     clearInterval(interval);
   }
-  interval = setInterval(() => getApiAndEmit(socket), 1000);
+  interval = setInterval(() => getApiAndEmit(socket), 100);
   socket.on("disconnect", () => {
     console.log("Client disconnected");
     clearInterval(interval);
   });
 });
 
-http.listen(3050, () => {
-  console.log('listening on *:3050');
+http.listen(8080, () => {
+  console.log('listening on *:8080');
 });

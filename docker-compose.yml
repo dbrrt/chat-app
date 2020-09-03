@@ -1,0 +1,37 @@
+version: '3.1'
+
+services:
+  chat_app_srv:
+    build:
+      context: ./chat-srv
+      dockerfile: Dockerfile
+    ports:
+      - ${API_PORT}:8080
+    env_file:
+      - ./.env
+    volumes:
+      - ./:/var/app/current
+    networks:
+      - chat-app-network
+    depends_on:
+      - chat_app_redis
+
+  chat_app_redis:
+    image: bitnami/redis:5.0.6
+    user: root
+    env_file:
+      - ./.env
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - redis_data:/bitnami/redis/data
+    networks:
+      - chat-app-network
+
+volumes:
+  redis_data:
+    driver: local
+
+networks:
+  chat-app-network:
+    driver: bridge

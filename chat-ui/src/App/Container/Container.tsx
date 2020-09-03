@@ -18,7 +18,7 @@ import {IContainer} from '../index.d'
 import {ICombinedState} from '../../store/reducers/index.d'
 
 import io from 'socket.io-client'
-const ENDPOINT = "http://127.0.0.1:3050";
+const ENDPOINT = "http://127.0.0.1:5555";
 
 import './style.scss'
 
