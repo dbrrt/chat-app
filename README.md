@@ -5,18 +5,20 @@ Chat App is a basic chat application where multiple users can interact and excha
 Roadmap:
 - React with Babel/TypeScript [x]
 - UI Components
- - Container
- - MessageTile
- - Responsive Design
- - Integration Redux
- - Modal Overlay
- - Keyboard Events
+ - Container [x]
+ - MessageTile [x]
+ - Responsive Design [x]
+ - Integration Redux [x]
+ - Modal Overlay [x]
+ - Select Username
+ - Display all users connected
  - Contact List
  - Messages List (per chat)
- - All Chats (with latest message)
+ - Keyboard Events
+
 - SocketIO server
-- Redis cache (to save users, messages, etc...)
 - Events (integration socketIO client)
+- Redis cache (to save users, messages, etc...)
 - docker-compose definition
 
 - Tests

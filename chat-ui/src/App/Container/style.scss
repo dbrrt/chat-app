@@ -15,6 +15,17 @@ html {
     min-height: 100%;
 }
 
+h1 {
+    font-size: 60px;
+    text-align: center;
+    padding-top: 3em;
+}
+
+h2 {
+    font-size: 29px; 
+    padding-bottom: 0.5em;
+}
+
 h3 {
     font-size: 25px;
 }
@@ -25,7 +36,7 @@ h3 {
     top: 1em;
     padding: 1em;
     cursor: pointer;
-    border:solid 0.5px black;
+    border:solid 0.5px transparent;
 }
 
 .settings-btn:hover {
