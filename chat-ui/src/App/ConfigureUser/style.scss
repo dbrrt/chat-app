@@ -1,0 +1,25 @@
+.input-username {
+    width: 75%;
+    height: 25%;
+    font-size: 30px;
+    margin: auto;
+    max-width: 350px;
+}
+
+.save-username-btn {
+    cursor: pointer;
+    background: #007bAA;
+    border: none;
+    color: white;
+    padding: 13px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    font-family: 'Ubuntu';
+    border-radius: 30px;
+}
+
+.save-username-btn:hover {
+    background: black;
+}

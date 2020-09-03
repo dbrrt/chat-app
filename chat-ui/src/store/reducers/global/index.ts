@@ -3,7 +3,8 @@ import {
     TOGGLE_MODAL_SETTINGS,
     TOGGLE_CLOCK_DISPLAY,
     TOGGLE_KEYBOARD_SEND_SHORTCUT,
-    RESET_MODAL_SETTINGS_CONFIG
+    RESET_MODAL_SETTINGS_CONFIG,
+    SET_UNSAFE_USERNAME
 } from './constants'
 import {IGlobalState, Action} from './index.d'
 
@@ -16,7 +17,8 @@ const SETTINGS_MODAL_INIT = {
 const INIT_STATE: IGlobalState = {
     input_message_box_visible: false,
     settings_modal_visible: false,
-    ...SETTINGS_MODAL_INIT
+    ...SETTINGS_MODAL_INIT,
+    username: null
 }
 
 const reducer = (state: IGlobalState = INIT_STATE, action: Action) => {
@@ -53,6 +55,13 @@ const reducer = (state: IGlobalState = INIT_STATE, action: Action) => {
         return {
             ...state,
             ...SETTINGS_MODAL_INIT
+        }
+    }
+
+    case SET_UNSAFE_USERNAME: {
+        return {
+            ...state,
+            username: action.username
         }
     }
 

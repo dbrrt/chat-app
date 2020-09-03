@@ -3,6 +3,7 @@ export interface IGlobalState {
     settings_modal_visible: boolean;
     clock_display: string;
     quick_message: boolean;
+    username: null | string;
   }
   
   export type Action = |
@@ -24,5 +25,9 @@ export interface IGlobalState {
   } |
   {
     type: 'RESET_MODAL_SETTINGS_CONFIG'
-  }
+  }|
+  {
+    type: 'SET_UNSAFE_USERNAME'
+    username: string | null
+  } 
   
