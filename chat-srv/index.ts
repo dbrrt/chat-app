@@ -15,12 +15,23 @@ io.on("connection", (socket: any) => {
   if (interval) {
     clearInterval(interval);
   }
-  interval = setInterval(() => getApiAndEmit(socket), 100);
+
+  socket.on("USER_HEARTBEAT", (data: any)=>{
+    //Here we broadcast it out to all other sockets EXCLUDING the socket which sent us the data
+   console.log(data)
+  });
+
+  // interval = setInterval(() => getApiAndEmit(socket), 100);
   socket.on("disconnect", () => {
     console.log("Client disconnected");
     clearInterval(interval);
   });
 });
+
+
+// io.on('CHAT_USER_HEARTBEAT', (socket: any) => {
+//   console.log(socket)
+// })
 
 http.listen(8080, () => {
   console.log('listening on *:8080');

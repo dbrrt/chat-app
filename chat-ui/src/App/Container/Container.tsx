@@ -26,16 +26,6 @@ export const Container = ({messages}: IContainer) => {
     const currentUser = ''
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        const socket = io(ENDPOINT);
-        socket.on("FromAPI", (data: any) => {
-          console.log(data)
-          socket.close()
-        })
-    }, [])
-
-
-
     const {inputBoxVisible, modalSettingsVisible, username, room} = useMappedState(
         useCallback(
           (state: ICombinedState) => ({
@@ -47,6 +37,19 @@ export const Container = ({messages}: IContainer) => {
           []
         )
       );
+
+    useEffect(() => {
+        if (username) {
+            const socket = io(ENDPOINT);
+            setInterval((username: string) => {
+                socket.emit('USER_HEARTBEAT', username);
+            }, 1000, username);
+        }
+    }, [username])
+
+
+
+
     
     const toggleSettings = useCallback(() => {
         dispatch({
