@@ -186,7 +186,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/socket.io-client@^1.4.33":
+"@types/socket.io-client@1.4.33":
   version "1.4.33"
   resolved "https://registry.yarnpkg.com/@types/socket.io-client/-/socket.io-client-1.4.33.tgz#8e705b9b3f7fba6cb329d27cd2eda222812adbf1"
   integrity sha512-m4LnxkljsI9fMsjwpW5QhRpMixo2BeeLpFmg0AE+sS4H1pzAd/cs/ftTiL60FLZgfFa8PFRPx5KsHu8O0bADKQ==
@@ -5045,7 +5045,7 @@ rollup-plugin-node-builtins@2.1.2:
     crypto-browserify "^3.11.0"
     process-es6 "^0.11.2"
 
-rollup-plugin-node-globals@^1.4.0:
+rollup-plugin-node-globals@1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/rollup-plugin-node-globals/-/rollup-plugin-node-globals-1.4.0.tgz#5e1f24a9bb97c0ef51249f625e16c7e61b7c020b"
   integrity sha512-xRkB+W/m1KLIzPUmG0ofvR+CPNcvuCuNdjVBVS7ALKSxr3EDhnzNceGkGi1m8MToSli13AzKFYH4ie9w3I5L3g==
@@ -5131,10 +5131,10 @@ rollup-watch@4.3.1:
     require-relative "0.8.7"
     rollup-pluginutils "^2.0.1"
 
-rollup@2.26.9:
-  version "2.26.9"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.26.9.tgz#4b6ce4e9044dd257d7314d8ed9b4d4d8a7d166c9"
-  integrity sha512-XIiWYLayLqV+oY4S2Lub/shJq4uk/QQLwWToYCL4LjZbYHbFK3czea4UDVRUJu+zNmKmxq5Zb/OG7c5HSvH2TQ==
+rollup@2.26.10:
+  version "2.26.10"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.26.10.tgz#0ffe0390d35f07af850382f22f1b8525c7f57f07"
+  integrity sha512-dUnjCWOA0h9qNX6qtcHidyatz8FAFZxVxt1dbcGtKdlJkpSxGK3G9+DLCYvtZr9v94D129ij9zUhG+xbRoqepw==
   optionalDependencies:
     fsevents "~2.1.2"
 
