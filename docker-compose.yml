@@ -28,6 +28,21 @@ services:
     networks:
       - chat-app-network
 
+  chat_app_redis_commander:
+    container_name: ca-redis-commander
+    hostname: redis-commander
+    image: rediscommander/redis-commander:latest
+    restart: always
+    environment:
+        - REDIS_HOSTS=chat_app_redis
+    ports:
+        - ${REDIS_COMMANDER_PORT}:8081
+    networks:
+      - chat-app-network
+    depends_on:
+      - chat_app_redis
+
+
 volumes:
   redis_data:
     driver: local

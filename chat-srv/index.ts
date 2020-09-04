@@ -2,6 +2,9 @@ var app = require('express')();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 
+const Redis = require("ioredis");
+
+
 let interval: any = null;
 
 const getApiAndEmit = (socket: any) => {
@@ -18,8 +21,19 @@ io.on("connection", (socket: any) => {
 
   socket.on("USER_HEARTBEAT", (data: any)=>{
     //Here we broadcast it out to all other sockets EXCLUDING the socket which sent us the data
-   console.log(data)
-  });
+    const redis = new Redis({
+      host: process.env.REDIS_URI,
+      lazyConnect: false,
+      enableOfflineQueue: true
+    })
+
+    redis.on('error', () => {
+      redis.disconnect()
+    })
+
+    redis.on('connect', () => {})
+      console.log('connected to redis')
+    });
 
   // interval = setInterval(() => getApiAndEmit(socket), 100);
   socket.on("disconnect", () => {

@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
+    "ioredis": "^4.17.3",
     "socket.io": "^2.3.0"
   }
 }
