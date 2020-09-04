@@ -5,6 +5,7 @@ export interface IGlobalState {
     quick_message: boolean;
     username: null | string;
     room: null | string;
+    connected_users: string[] | null;
   }
   
   export type Action = |
@@ -37,5 +38,9 @@ export interface IGlobalState {
   } |
   {
     type: 'SIGN_OUT'
+  } |
+  {
+    type: 'SET_CONNECTED_USERS'
+    users: string[] | null
   }
   

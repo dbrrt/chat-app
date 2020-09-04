@@ -7,11 +7,7 @@ const Redis = require("ioredis");
 
 let interval: any = null;
 
-const getApiAndEmit = (socket: any) => {
-    const response = new Date();
-    // Emitting a new message. Will be consumed by the client
-    socket.emit("FromAPI", response);
-};
+const LIST_CACHE_USERS = 'connected_users'
 
 io.on("connection", (socket: any) => {
   console.log("New client connected");
@@ -19,20 +15,29 @@ io.on("connection", (socket: any) => {
     clearInterval(interval);
   }
 
-  socket.on("USER_HEARTBEAT", (data: any)=>{
-    //Here we broadcast it out to all other sockets EXCLUDING the socket which sent us the data
-    const redis = new Redis({
-      host: process.env.REDIS_URI,
-      lazyConnect: false,
-      enableOfflineQueue: true
-    })
+  socket.on("USER_HEARTBEAT", (username: string)=>{
+      //Here we broadcast it out to all other sockets EXCLUDING the socket which sent us the data
+      const redis = new Redis({
+        host: process.env.REDIS_HOSTNAME,
+        lazyConnect: false,
+        enableOfflineQueue: true
+      })
 
-    redis.on('error', () => {
-      redis.disconnect()
-    })
+      redis.on('error', (e: any) => {
+        console.log(e)
+        redis.disconnect()
+      })
 
-    redis.on('connect', () => {})
-      console.log('connected to redis')
+      redis.on('connect', async () => {
+        const elements = await redis.lrange(LIST_CACHE_USERS, 0, -1)
+        if (!elements.includes(username)) {
+          await redis.lpush(LIST_CACHE_USERS, username)
+        }
+        const CONNECTED_USERS =  await redis.lrange(LIST_CACHE_USERS, 0, -1)
+        socket.emit('CONNECTED_USERS', CONNECTED_USERS)
+        await redis.quit()
+      })
+      
     });
 
   // interval = setInterval(() => getApiAndEmit(socket), 100);

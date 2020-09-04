@@ -1,5 +1,6 @@
 API_PORT=5555
 
 # Redis
-REDIS_URI=redis://chat_app_redis:6379/0
+REDIS_HOSTNAME=chat_app_redis
+REDIS_URI=redis://$(REDIS_HOSTNAME):6379/0
 REDIS_COMMANDER_PORT=5588

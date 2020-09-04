@@ -6,7 +6,8 @@ import {
     RESET_MODAL_SETTINGS_CONFIG,
     SET_UNSAFE_USERNAME,
     SET_CHAT_ROOM,
-    SIGN_OUT
+    SIGN_OUT,
+    SET_CONNECTED_USERS
 } from './constants'
 import {IGlobalState, Action} from './index.d'
 
@@ -24,12 +25,17 @@ const SETTINGS_ROOM_INIT = {
     room: null
 }
 
+const CONNECTED_USERS_INIT = {
+    connected_users: []
+}
+
 const INIT_STATE: IGlobalState = {
     input_message_box_visible: false,
     settings_modal_visible: false,
     ...SETTINGS_MODAL_INIT,
     ...SETTINGS_USER_INIT,
-    ...SETTINGS_ROOM_INIT
+    ...SETTINGS_ROOM_INIT,
+    ...CONNECTED_USERS_INIT
 }
 
 const reducer = (state: IGlobalState = INIT_STATE, action: Action) => {
@@ -88,6 +94,13 @@ const reducer = (state: IGlobalState = INIT_STATE, action: Action) => {
             ...state,
             ...SETTINGS_USER_INIT,
             ...SETTINGS_ROOM_INIT
+        }
+    }
+
+    case SET_CONNECTED_USERS: {
+        return {
+            ...state,
+            connected_users: action.users
         }
     }
 

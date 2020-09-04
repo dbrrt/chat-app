@@ -23,9 +23,7 @@ const ENDPOINT = "http://127.0.0.1:5555";
 import './style.scss'
 
 export const Container = ({messages}: IContainer) => {
-    const currentUser = ''
     const dispatch = useDispatch()
-
     const {inputBoxVisible, modalSettingsVisible, username, room} = useMappedState(
         useCallback(
           (state: ICombinedState) => ({
@@ -43,12 +41,16 @@ export const Container = ({messages}: IContainer) => {
             const socket = io(ENDPOINT);
             setInterval((username: string) => {
                 socket.emit('USER_HEARTBEAT', username);
-            }, 1000, username);
+            }, 2500, username);
+
+            socket.on('CONNECTED_USERS', (users: string[]) => {
+                dispatch({
+                    type: 'SET_CONNECTED_USERS',
+                    users
+                })
+            })
         }
     }, [username])
-
-
-
 
     
     const toggleSettings = useCallback(() => {
@@ -112,8 +114,8 @@ export const Container = ({messages}: IContainer) => {
                                             timestamp={new Date().toISOString()}
                                             username={el.username}
                                             message={el.message}
-                                            isSender={el?.sender === currentUser}
-                                            isRecipient={el?.sender === currentUser}
+                                            isSender={el?.sender === username}
+                                            isRecipient={el?.sender === username}
                                         />
                                         
                                     )

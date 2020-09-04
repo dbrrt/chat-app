@@ -1,10 +1,14 @@
 import * as React from 'react'
-import {useDispatch} from '../../store'
+import {useDispatch, useMappedState} from '../../store'
+import {ICombinedState} from '../../store/reducers/index.d'
 import {SET_CHAT_ROOM} from '../../store/constants'
 
 const URI_GREEN_LIGHT = 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Green_Light_Icon.svg'
 
+import { useCallback } from 'react'
+
 import './style.scss'
+
 
 export const ChatRooms = () => {
     const dispatch = useDispatch()
@@ -15,13 +19,25 @@ export const ChatRooms = () => {
             room
         })
     }, [])
-
+    const {username, users} = useMappedState(
+        useCallback(
+          (state: ICombinedState) => ({
+            inputBoxVisible: state.global.input_message_box_visible,
+            modalSettingsVisible: state.global.settings_modal_visible,
+            username: state.global.username,
+            room: state.global.room,
+            users: state.global.connected_users
+          }),
+          []
+        )
+      );
 
     return (
         <div style={{ textAlign: 'center' }}>
-            <h1>Connected users</h1>
+            <h1>Connected users ({users?.filter((el: string) => el !== username).length})</h1>
+            <hr style={{ maxWidth: '300px'}} />
             <br />
-            {['guest0'].map((el: string, key: number) => {
+            {users?.sort().filter((el: string) => el !== username)?.map((el: string, key: number) => {
                 return (
                     <div className='contact-block' key={key} style={{ padding: '2em' }} onClick={() => setRoom(el)}>
                         <span ><img src={URI_GREEN_LIGHT} width='10' /> &nbsp;{el}</span>
