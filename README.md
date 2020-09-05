@@ -22,3 +22,9 @@ Roadmap:
 - docker-compose definition
 
 - Tests
+
+
+Roadmap:
+
+- Mocking SocketIO
+- Improving SocketIO client life-cycle

@@ -1,20 +1,17 @@
 import * as React from 'react'
 const {useCallback, useEffect} = React
-import {MessageTile} from '../MessageTile'
-import {NewMessageBox} from '../NewMessageBox'
-import {FabButton} from '../FabButton'
 import {ModalSettings} from '../ModalSettings'
 import {ConfigureUser} from '../ConfigureUser'
 import {ChatRooms} from '../ChatRooms'
+import {RoomShell} from '../RoomShell'
 
 import GithubCorner from 'react-github-corner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faComment, faWrench, faSignOutAlt, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { faComment, faWrench, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 
-import { TOGGLE_MODAL_SETTINGS, SET_CHAT_ROOM, SIGN_OUT, ADD_MESSAGE } from "../../store/constants";
+import { TOGGLE_MODAL_SETTINGS, SIGN_OUT } from "../../store/constants";
 import { useMappedState, useDispatch } from "../../store";
 
-import {IMessage} from '../index.d'
 import {ICombinedState} from '../../store/reducers/index.d'
 
 import io from 'socket.io-client'
@@ -24,7 +21,7 @@ import './style.scss'
 
 export const Container = () => {
     const dispatch = useDispatch()
-    const {room, inputBoxVisible, modalSettingsVisible, username, messages } = useMappedState(
+    const {room, modalSettingsVisible, username } = useMappedState(
         useCallback(
           (state: ICombinedState) => ({
             inputBoxVisible: state.global.input_message_box_visible,
@@ -38,24 +35,11 @@ export const Container = () => {
       );
 
     useEffect(() => {
+        const socket = io(ENDPOINT);
         if (username) {
-            const socket = io(ENDPOINT);
             setInterval((username: string) => {
                 socket.emit('USER_HEARTBEAT', username);
             }, 2500, username);
-
-            socket.on('MESSAGE_BROADCAST', (message: IMessage) => {
-                dispatch({
-                    type: ADD_MESSAGE,
-                    message
-                })
-            })
-
-            const ROOM_ID = [username, room].sort().join('___').toUpperCase()
-            
-            if (room) {
-                socket.emit('join', ROOM_ID)
-            }
 
             socket.on('CONNECTED_USERS', (users: string[]) => {
                 dispatch({
@@ -63,9 +47,11 @@ export const Container = () => {
                     users
                 })
             })
-
-
         }
+        const cleanup = () => {
+            socket.close()
+        };
+        return cleanup
     }, [username, room])
 
     
@@ -73,13 +59,6 @@ export const Container = () => {
         dispatch({
             type: TOGGLE_MODAL_SETTINGS,
             visible: true
-        })
-    }, [])
-
-    const unsetRoom = React.useCallback(() => {
-        dispatch({
-            type: SET_CHAT_ROOM,
-            room: null
         })
     }, [])
 
@@ -100,44 +79,10 @@ export const Container = () => {
             <br />
 
             {modalSettingsVisible && <ModalSettings />}
+            {username === null 
+            ? <ConfigureUser />
+            : room === null ? <ChatRooms /> : <RoomShell />}
 
-
-            {username === null ?
-                
-                <ConfigureUser />
-            : (
-                <>
-                    {room === null ? <ChatRooms />
-                    : (
-                        <>
-                            <div className='primary-btn' onClick={unsetRoom}>Go Back &nbsp;<FontAwesomeIcon icon={faChevronLeft} /></div>
-                            <h2>Chat: {room}</h2>
-                            <hr />
-                            <div className='messages-container'>
-                                {messages.map((el: any, key: number) => {
-                                    return (
-                                        <MessageTile
-                                            key={key}
-                                            timestamp={new Date().toISOString()}
-                                            username={el.username}
-                                            message={el.message}
-                                            isSender={el?.sender === username}
-                                            isRecipient={el?.sender === username}
-                                        />
-                                        
-                                    )
-                                })}
-                            </div>
-                            <FabButton />
-                            {inputBoxVisible && <NewMessageBox />}
-                        </>
-                    )}
-                    
-
-                </>
-            )}
-
-            
         </div>
     )
 
