@@ -3,13 +3,22 @@ import { cpuUsage } from "process";
 var app = require('express')();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
-
 const Redis = require("ioredis");
 
 
 let interval: any = null;
 
 const LIST_CACHE_USERS = 'connected_users'
+
+export interface MessageObject {
+  sender: string | null;
+  recipient: string | null;
+  message: {
+      type: string;
+      payload: string;
+  },
+  ts: string
+}
 
 
 const clearUsersList = () => {
@@ -33,8 +42,14 @@ io.on("connection", (socket: any) => {
     clearInterval(interval);
   }
 
-  socket.on("MESSAGE_HANDLER", (payload: any) => {
-    console.log(payload);
+  socket.on('join', (room: string) => {
+    console.log(`ROOM [${room}]`)
+    socket.join(room);
+  });
+
+  socket.on("MESSAGE_HANDLER", (payload: MessageObject) => {
+    const ROOM = [payload?.recipient, payload?.sender].sort().join('___').toUpperCase()
+    socket.to(ROOM).emit('MESSAGE_BROADCAST', payload)
   });
 
   socket.on("USER_HEARTBEAT", (username: string)=>{
@@ -63,18 +78,12 @@ io.on("connection", (socket: any) => {
     });
   
 
-
-  // interval = setInterval(() => getApiAndEmit(socket), 100);
   socket.on("disconnect", () => {
     console.log("Client disconnected");
     clearInterval(interval);
   });
 });
 
-
-// io.on('CHAT_USER_HEARTBEAT', (socket: any) => {
-//   console.log(socket)
-// })
 
 http.listen(8080, () => {
   console.log('listening on *:8080');

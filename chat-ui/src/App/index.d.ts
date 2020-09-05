@@ -1,14 +1,11 @@
 export interface IMessage {
-    sender: string;
-    recipient: string;
+    sender: string | null;
+    recipient: string | null;
     message: {
         type: string;
         payload: string;
     }
-}
-
-export interface IContainer {
-    messages: IMessage[]
+    ts: string;
 }
 
 export interface IMessageTile {
@@ -17,14 +14,4 @@ export interface IMessageTile {
     message: IMessage;
     isSender: boolean;
     isRecipient: boolean;
-}
-
-export interface MessageObject {
-    sender: string;
-    recipient: string;
-    message: {
-        type: string;
-        payload: string;
-    },
-    ts: string
 }

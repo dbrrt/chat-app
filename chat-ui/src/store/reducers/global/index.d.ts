@@ -1,3 +1,5 @@
+import {IMessage} from '../../../App/index.d'
+
 export interface IGlobalState {
     input_message_box_visible: boolean;
     settings_modal_visible: boolean;
@@ -6,6 +8,7 @@ export interface IGlobalState {
     username: null | string;
     room: null | string;
     connected_users: string[] | null;
+    messages_rooms: IMessage[];
   }
   
   export type Action = |
@@ -42,5 +45,9 @@ export interface IGlobalState {
   {
     type: 'SET_CONNECTED_USERS'
     users: string[] | null
+  } |
+  {
+    type: 'ADD_MESSAGE'
+    message: IMessage
   }
   

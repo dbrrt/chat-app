@@ -7,7 +7,8 @@ import {
     SET_UNSAFE_USERNAME,
     SET_CHAT_ROOM,
     SIGN_OUT,
-    SET_CONNECTED_USERS
+    SET_CONNECTED_USERS,
+    ADD_MESSAGE
 } from './constants'
 import {IGlobalState, Action} from './index.d'
 
@@ -29,13 +30,18 @@ const CONNECTED_USERS_INIT = {
     connected_users: []
 }
 
+const ROOM_MESSAGES_INIT = {
+    messages_rooms: []
+}
+
 const INIT_STATE: IGlobalState = {
     input_message_box_visible: true,
     settings_modal_visible: false,
     ...SETTINGS_MODAL_INIT,
     ...SETTINGS_USER_INIT,
     ...SETTINGS_ROOM_INIT,
-    ...CONNECTED_USERS_INIT
+    ...CONNECTED_USERS_INIT,
+    ...ROOM_MESSAGES_INIT
 }
 
 const reducer = (state: IGlobalState = INIT_STATE, action: Action) => {
@@ -101,6 +107,13 @@ const reducer = (state: IGlobalState = INIT_STATE, action: Action) => {
         return {
             ...state,
             connected_users: action.users
+        }
+    }
+
+    case ADD_MESSAGE: {
+        return {
+            ...state,
+            messages_rooms: [...state.messages_rooms, action.message]
         }
     }
 

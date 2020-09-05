@@ -32,13 +32,13 @@ export const ChatRooms = () => {
         )
       );
 
-    const ROOMS = users?.filter((el: string) => el !== username).length
+    const ROOMS = Array.from(new Set(users?.filter((el: string) => el !== username))) || []
 
     return (
         <div style={{ textAlign: 'center' }}>
-            <h2>Chat rooms {ROOMS && ROOMS > 0 ? <span>({ROOMS})</span> : null}</h2>
+            <h2>Chat rooms {ROOMS!.length > 0 ? <span>({ROOMS!.length})</span> : null}</h2>
             <hr />
-            {users?.sort().filter((el: string) => el !== username)?.map((el: string, key: number) => {
+            {ROOMS!.map((el: string, key: number) => {
                 return (
                     <div className='contact-block' key={key} style={{ padding: '2em' }} onClick={() => setRoom(el)}>
                         <span ><img src={URI_GREEN_LIGHT} width='10' /> &nbsp;{el}</span>

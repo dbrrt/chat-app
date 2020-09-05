@@ -11,10 +11,10 @@ import GithubCorner from 'react-github-corner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faWrench, faSignOutAlt, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 
-import { TOGGLE_MODAL_SETTINGS, SET_CHAT_ROOM, SIGN_OUT } from "../../store/constants";
+import { TOGGLE_MODAL_SETTINGS, SET_CHAT_ROOM, SIGN_OUT, ADD_MESSAGE } from "../../store/constants";
 import { useMappedState, useDispatch } from "../../store";
 
-import {IContainer, MessageObject} from '../index.d'
+import {IMessage} from '../index.d'
 import {ICombinedState} from '../../store/reducers/index.d'
 
 import io from 'socket.io-client'
@@ -22,16 +22,16 @@ const ENDPOINT = "http://127.0.0.1:5555"; // TODO: pass in environment variables
 
 import './style.scss'
 
-export const Container = ({messages}: IContainer) => {
-    let socket: any = null
+export const Container = () => {
     const dispatch = useDispatch()
-    const {room, inputBoxVisible, modalSettingsVisible, username} = useMappedState(
+    const {room, inputBoxVisible, modalSettingsVisible, username, messages } = useMappedState(
         useCallback(
           (state: ICombinedState) => ({
             inputBoxVisible: state.global.input_message_box_visible,
             modalSettingsVisible: state.global.settings_modal_visible,
             username: state.global.username,
-            room: state.global.room
+            room: state.global.room,
+            messages: state.global.messages_rooms
           }),
           []
         )
@@ -39,10 +39,23 @@ export const Container = ({messages}: IContainer) => {
 
     useEffect(() => {
         if (username) {
-            socket = io(ENDPOINT);
+            const socket = io(ENDPOINT);
             setInterval((username: string) => {
                 socket.emit('USER_HEARTBEAT', username);
             }, 2500, username);
+
+            socket.on('MESSAGE_BROADCAST', (message: IMessage) => {
+                dispatch({
+                    type: ADD_MESSAGE,
+                    message
+                })
+            })
+
+            const ROOM_ID = [username, room].sort().join('___').toUpperCase()
+            
+            if (room) {
+                socket.emit('join', ROOM_ID)
+            }
 
             socket.on('CONNECTED_USERS', (users: string[]) => {
                 dispatch({
@@ -51,15 +64,7 @@ export const Container = ({messages}: IContainer) => {
                 })
             })
 
-            if (room && username) {
-                socket.on(`${JSON.stringify([room, username].sort()).toUpperCase}_CHANNEL`, (message: MessageObject) => {
-                    // dispatch({
-                    //     type: 'SET_CONNECTED_USERS',
-                    //     users
-                    // })
-                    console.log(message)
-                })
-            }
+
         }
     }, [username, room])
 

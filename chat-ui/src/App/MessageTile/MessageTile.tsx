@@ -6,7 +6,8 @@ export const MessageTile = ({timestamp, username, message, isRecipient}: IMessag
     return (
         <div className='message-tile-row' style={{ width: '100%', float: 'left' }}>
             <div className={`message-tile message-tile-${isRecipient ? 'left' : 'right'}`}>
-                {username}  {timestamp} {JSON.stringify(message)}
+                {username}  {timestamp}
+                {message?.message?.type === 'image' ? <img src={message?.message?.payload} /> : JSON.stringify(message)}
             </div>
         </div>
     )
