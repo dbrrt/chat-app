@@ -7,11 +7,10 @@ import {SET_CHAT_ROOM} from '../../store/constants'
 
 const URI_GREEN_LIGHT = 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Green_Light_Icon.svg'
 
-
-import './style.scss'
-
 import io from 'socket.io-client'
 const ENDPOINT = "http://127.0.0.1:5555"; // TODO: pass in environment variables
+
+import './style.scss'
 
 export const ChatRooms = () => {
     const dispatch = useDispatch()
@@ -60,7 +59,8 @@ export const ChatRooms = () => {
     return (
         <div style={{ textAlign: 'center' }}>
             <h2>Chat rooms {ROOMS!.length > 0 ? <span>({ROOMS!.length})</span> : null}</h2>
-            <hr />
+            <br />
+            <br />
             {ROOMS!.map((el: string, key: number) => {
                 return (
                     <div className='contact-block' key={key} style={{ padding: '2em' }} onClick={() => setRoom(el)}>

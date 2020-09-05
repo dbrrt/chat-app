@@ -1,21 +1,23 @@
 import * as React from 'react'
-const {useState, useCallback, useEffect} = React
+const {useState, useCallback} = React
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch, useMappedState } from '../../store'
 import { TOGGLE_INPUT_MESSAGE_BOX } from '../../store/constants'
 import {ICombinedState} from '../../store/reducers/index.d'
-
 import {IMessage} from '../index.d'
 
 import io from 'socket.io-client'
 const ENDPOINT = "http://127.0.0.1:5555"; // TODO: pass in environment variables
+import {useKeyPress} from '../../hooks/useKeypress'
 
 import './style.scss'
 
 const INIT_MESSAGE_VALUE = ''
 
 export const NewMessageBox = () => {
+    const autoFireKeyEvent = useKeyPress('Enter');
+
     const [message, setMessage] = useState(INIT_MESSAGE_VALUE)
     const dispatch = useDispatch()
     const toggleInputBox = React.useCallback(() => {
@@ -25,14 +27,15 @@ export const NewMessageBox = () => {
           });
     }, [])
 
-    const {username, room} = useMappedState(
+    const {username, room, quickMessage} = useMappedState(
         useCallback(
           (state: ICombinedState) => ({
             inputBoxVisible: state.global.input_message_box_visible,
             modalSettingsVisible: state.global.settings_modal_visible,
             username: state.global.username,
             room: state.global.room,
-            users: state.global.connected_users
+            users: state.global.connected_users,
+            quickMessage: state.global.quick_message
           }),
           []
         )
@@ -60,10 +63,17 @@ export const NewMessageBox = () => {
 
     }, [message, username, room])
 
+    if (quickMessage && autoFireKeyEvent && message.length > 0) {
+        sendMessage()
+    }
+
     return (
         <div className='message-box'>
             <FontAwesomeIcon className='close-icon-btn' icon={faTimes} onClick={toggleInputBox} />
             <div>
+                <span style={{ fontSize: '12px', color: 'white' }}>Auto-send message pressing Enter Key [{quickMessage ? 'ON': 'OFF'}]</span>
+                <br />
+                <br />
                 <textarea rows={3} className='input-message-box' onChange={(e) => setMessage(e.target.value)} value={message} />
                 <br />
                 <br />

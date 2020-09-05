@@ -1,14 +1,16 @@
 import * as React from 'react'
 const {useEffect, useCallback, useState} = React
 import {MessageTile} from '../MessageTile'
-import {ICombinedState} from '../../store/reducers/index.d'
+
 import { useMappedState, useDispatch } from '../../store';
 import { SET_CHAT_ROOM } from '../../store/constants';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faUserAlt } from '@fortawesome/free-solid-svg-icons';
 import { FabButton } from '../FabButton';
 import { NewMessageBox } from '../NewMessageBox';
 
+import {ICombinedState} from '../../store/reducers/index.d'
 import {IMessage} from '../index.d'
 
 import io from 'socket.io-client'
@@ -63,7 +65,8 @@ export const RoomShell = () => {
         <>
             <div className='primary-btn' onClick={unsetRoom}>Go Back &nbsp;<FontAwesomeIcon icon={faChevronLeft} /></div>
             <h2><FontAwesomeIcon icon={faUserAlt} /> {room}</h2>
-            <hr />
+            <br />
+            <br />
             <div className='messages-container'>
                 {messages.map((el: any, key: number) => {
                     return (

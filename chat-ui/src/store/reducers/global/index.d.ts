@@ -1,4 +1,4 @@
-import {IMessage} from '../../../App/index.d'
+import {IMessage} from '../../../app/index.d'
 
 export interface IGlobalState {
     input_message_box_visible: boolean;
@@ -45,9 +45,5 @@ export interface IGlobalState {
   {
     type: 'SET_CONNECTED_USERS'
     users: string[] | null
-  } |
-  {
-    type: 'ADD_MESSAGE'
-    message: IMessage
   }
   

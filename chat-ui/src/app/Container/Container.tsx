@@ -5,7 +5,7 @@ import {ConfigureUser} from '../ConfigureUser'
 import {ChatRooms} from '../ChatRooms'
 import {RoomShell} from '../RoomShell'
 
-import GithubCorner from 'react-github-corner';
+import {default as GithubCorner} from 'react-github-corner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faWrench, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 
@@ -44,21 +44,18 @@ export const Container = () => {
         })
     }, [])
 
-
     return (
         <div className='app-container'>
             <h3 style={{ marginLeft: '60px' }}><FontAwesomeIcon icon={faComment} /> Chat App</h3>
-            <div className='settings-btn' onClick={toggleSettings}>Settings &nbsp;<FontAwesomeIcon icon={faWrench} /></div>
+            {username && <div className='settings-btn' onClick={toggleSettings}>Settings &nbsp;<FontAwesomeIcon icon={faWrench} /></div>}
             {username && <div className='signout-btn' onClick={signOut}>Sign Out &nbsp;<FontAwesomeIcon icon={faSignOutAlt} /></div>}
             <GithubCorner href="https://github.com/dbrrt/chat-app" direction='left' />
             <br />
             <br />
-
             {modalSettingsVisible && <ModalSettings />}
             {username === null 
             ? <ConfigureUser />
             : room === null ? <ChatRooms /> : <RoomShell />}
-
         </div>
     )
 

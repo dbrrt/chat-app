@@ -4,7 +4,7 @@ import { faTimes, faWrench } from '@fortawesome/free-solid-svg-icons'
 import { useCallback } from 'react'
 import { TOGGLE_MODAL_SETTINGS, TOGGLE_CLOCK_DISPLAY, TOGGLE_KEYBOARD_SEND_SHORTCUT, RESET_MODAL_SETTINGS_CONFIG } from '../../store/constants'
 import {useDispatch, useMappedState} from '../../store'
-import { ICombinedState } from '../../store/reducers/index.d'
+import {ICombinedState} from '../../store/reducers/index.d'
 
 import './style.scss'
 
@@ -72,7 +72,7 @@ export const ModalSettings = () => {
 
                 <br /> <br/>
 
-                <h2>Send messages on CMD/CTRL-Enter</h2>
+                <h2>Send messages on Pressing Enter</h2>
 
                 <label className="container">Off
                     <input type="radio"  name="shortcut_send_msg" value="false" onChange={updateKeyboardShortcutActivate} checked={JSON.stringify(quickMessage) === 'false'} />
