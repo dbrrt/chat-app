@@ -1,5 +1,5 @@
 import * as React from 'react'
-const {useCallback, useEffect} = React
+const {useCallback} = React
 import {ModalSettings} from '../ModalSettings'
 import {ConfigureUser} from '../ConfigureUser'
 import {ChatRooms} from '../ChatRooms'
@@ -13,9 +13,6 @@ import { TOGGLE_MODAL_SETTINGS, SIGN_OUT } from "../../store/constants";
 import { useMappedState, useDispatch } from "../../store";
 
 import {ICombinedState} from '../../store/reducers/index.d'
-
-import io from 'socket.io-client'
-const ENDPOINT = "http://127.0.0.1:5555"; // TODO: pass in environment variables
 
 import './style.scss'
 
@@ -33,27 +30,6 @@ export const Container = () => {
           []
         )
       );
-
-    useEffect(() => {
-        const socket = io(ENDPOINT);
-        if (username) {
-            setInterval((username: string) => {
-                socket.emit('USER_HEARTBEAT', username);
-            }, 2500, username);
-
-            socket.on('CONNECTED_USERS', (users: string[]) => {
-                dispatch({
-                    type: 'SET_CONNECTED_USERS',
-                    users
-                })
-            })
-        }
-        const cleanup = () => {
-            socket.close()
-        };
-        return cleanup
-    }, [username, room])
-
     
     const toggleSettings = useCallback(() => {
         dispatch({

@@ -1,14 +1,17 @@
 import * as React from 'react'
+const { useCallback, useEffect } = React
+
 import {useDispatch, useMappedState} from '../../store'
 import {ICombinedState} from '../../store/reducers/index.d'
 import {SET_CHAT_ROOM} from '../../store/constants'
 
 const URI_GREEN_LIGHT = 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Green_Light_Icon.svg'
 
-import { useCallback } from 'react'
 
 import './style.scss'
 
+import io from 'socket.io-client'
+const ENDPOINT = "http://127.0.0.1:5555"; // TODO: pass in environment variables
 
 export const ChatRooms = () => {
     const dispatch = useDispatch()
@@ -19,7 +22,7 @@ export const ChatRooms = () => {
             room
         })
     }, [])
-    const {username, users} = useMappedState(
+    const {username, users, room} = useMappedState(
         useCallback(
           (state: ICombinedState) => ({
             inputBoxVisible: state.global.input_message_box_visible,
@@ -31,6 +34,26 @@ export const ChatRooms = () => {
           []
         )
       );
+
+      useEffect(() => {
+        const socket = io(ENDPOINT);
+        if (username) {
+            setInterval((username: string) => {
+                socket.emit('USER_HEARTBEAT', username);
+            }, 2500, username);
+
+            socket.on('CONNECTED_USERS', (users: string[]) => {
+                dispatch({
+                    type: 'SET_CONNECTED_USERS',
+                    users
+                })
+            })
+        }
+        const cleanup = () => {
+            socket.close()
+        };
+        return cleanup
+    }, [username, room])
 
     const ROOMS = Array.from(new Set(users?.filter((el: string) => el !== username))) || []
 

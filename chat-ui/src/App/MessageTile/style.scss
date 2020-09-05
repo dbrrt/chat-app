@@ -1,14 +1,12 @@
-h1, h2, h3, div, span {
-    font-family: "Ubuntu";
-}
-
-
 .message-tile {
     border: solid 1px black;
     padding: 3em;
     margin: 1em;
     color: white;
-    font-weight: 900;
+	font-weight: 900;
+	// animations
+	animation: flipInX; /* referring directly to the animation's @keyframe declaration */
+	animation-duration: 1s; /* don't forget to set a duration! */
 }
 
 @media screen and (min-width: 600px) {
@@ -21,6 +19,26 @@ h1, h2, h3, div, span {
     .message-tile {
         width: 75%;
     }
+}
+
+.message-tile-row {
+	width: 100%;
+	float: left;
+}
+
+.message-tile-meta {
+	top: 0;
+    position: absolute;
+    float: right;
+    text-align: right;
+    width: 88%;
+    font-size: 12px;
+    color: black;
+}
+
+.message-tile-sender-meta {
+	font-size: 15px;
+	font-weight: 900;
 }
 
 .message-tile-left {
@@ -68,10 +86,4 @@ h1, h2, h3, div, span {
 
 hr {
     border-style: ridge;
-}
-
-// Animations
-.message-tile { 
-	animation: flipInX; /* referring directly to the animation's @keyframe declaration */
-	animation-duration: 1s; /* don't forget to set a duration! */
 }

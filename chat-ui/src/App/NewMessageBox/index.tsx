@@ -16,20 +16,13 @@ import './style.scss'
 const INIT_MESSAGE_VALUE = ''
 
 export const NewMessageBox = () => {
-    
-
     const [message, setMessage] = useState(INIT_MESSAGE_VALUE)
-
     const dispatch = useDispatch()
     const toggleInputBox = React.useCallback(() => {
         dispatch({
             type: TOGGLE_INPUT_MESSAGE_BOX,
             visible: false
           });
-    }, [])
-
-    useEffect(() => {
-        
     }, [])
 
     const {username, room} = useMappedState(
@@ -45,11 +38,8 @@ export const NewMessageBox = () => {
         )
     );
 
-
-
     const sendMessage = React.useCallback(() => {
-        const REGEX_URI_IMAGE = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/
-
+        const REGEX_URI_IMAGE = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|JPG|PNG|GIF)/
         const messageObj: IMessage = {
             sender: username,
             recipient: room,
@@ -61,17 +51,12 @@ export const NewMessageBox = () => {
         }
 
         const socket = io(ENDPOINT)
-        
         socket.emit('MESSAGE_HANDLER', messageObj);
         setMessage(INIT_MESSAGE_VALUE)
         
-        socket.on('MESSAGE_BROADCAST', (message: any) => {
-            // dispatch({
-            //     type: 'SET_CONNECTED_USERS',
-            //     users
-            // })
-            console.log(message)
-        })
+        setTimeout(() => {
+            socket.close()
+        }, 1000, socket)
 
     }, [message, username, room])
 

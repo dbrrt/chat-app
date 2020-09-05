@@ -1,13 +1,8 @@
-import { cpuUsage } from "process";
-
 var app = require('express')();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 const Redis = require("ioredis");
-
-
 let interval: any = null;
-
 const LIST_CACHE_USERS = 'connected_users'
 
 export interface MessageObject {
@@ -19,7 +14,6 @@ export interface MessageObject {
   },
   ts: string
 }
-
 
 const clearUsersList = () => {
   const redis = new Redis({
@@ -37,13 +31,13 @@ const clearUsersList = () => {
 setInterval(() => clearUsersList(), 25000);
 
 io.on("connection", (socket: any) => {
-  console.log("New client connected");
+  // console.log("New client connected");
   if (interval) {
     clearInterval(interval);
   }
 
   socket.on('join', (room: string) => {
-    console.log(`ROOM [${room}]`)
+    // console.log(`ROOM [${room}]`)
     socket.join(room);
   });
 
@@ -52,7 +46,7 @@ io.on("connection", (socket: any) => {
     socket.to(ROOM).emit('MESSAGE_BROADCAST', payload)
   });
 
-  socket.on("USER_HEARTBEAT", (username: string)=>{
+  socket.on("USER_HEARTBEAT", (username: string) => {
       const redis = new Redis({
         host: process.env.REDIS_HOSTNAME,
         lazyConnect: false,
@@ -66,24 +60,20 @@ io.on("connection", (socket: any) => {
 
       redis.on('connect', async () => {
         const elements = await redis.lrange(LIST_CACHE_USERS, 0, -1)
-
         if (!elements.includes(username)) {
           await redis.lpush(LIST_CACHE_USERS, username)
         }
         const CONNECTED_USERS =  await redis.lrange(LIST_CACHE_USERS, 0, -1)
         socket.emit('CONNECTED_USERS', CONNECTED_USERS)
         await redis.quit()
-      })
-      
-    });
+      })    
+  });
   
-
   socket.on("disconnect", () => {
-    console.log("Client disconnected");
+    // console.log("Client disconnected");
     clearInterval(interval);
   });
 });
-
 
 http.listen(8080, () => {
   console.log('listening on *:8080');

@@ -10,8 +10,10 @@ export interface IMessage {
 
 export interface IMessageTile {
     timestamp: string;
-    username: string;
-    message: IMessage;
+    sender: string;
     isSender: boolean;
     isRecipient: boolean;
+    messageType: string;
+    messagePayload: string;
+    formatDate: string;
 }
