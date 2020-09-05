@@ -11,20 +11,21 @@ import GithubCorner from 'react-github-corner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faWrench, faSignOutAlt, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 
-import { TOGGLE_MODAL_SETTINGS, SET_UNSAFE_USERNAME, SET_CHAT_ROOM, SIGN_OUT } from "../../store/constants";
+import { TOGGLE_MODAL_SETTINGS, SET_CHAT_ROOM, SIGN_OUT } from "../../store/constants";
 import { useMappedState, useDispatch } from "../../store";
 
-import {IContainer} from '../index.d'
+import {IContainer, MessageObject} from '../index.d'
 import {ICombinedState} from '../../store/reducers/index.d'
 
 import io from 'socket.io-client'
-const ENDPOINT = "http://127.0.0.1:5555";
+const ENDPOINT = "http://127.0.0.1:5555"; // TODO: pass in environment variables
 
 import './style.scss'
 
 export const Container = ({messages}: IContainer) => {
+    let socket: any = null
     const dispatch = useDispatch()
-    const {inputBoxVisible, modalSettingsVisible, username, room} = useMappedState(
+    const {room, inputBoxVisible, modalSettingsVisible, username} = useMappedState(
         useCallback(
           (state: ICombinedState) => ({
             inputBoxVisible: state.global.input_message_box_visible,
@@ -38,7 +39,7 @@ export const Container = ({messages}: IContainer) => {
 
     useEffect(() => {
         if (username) {
-            const socket = io(ENDPOINT);
+            socket = io(ENDPOINT);
             setInterval((username: string) => {
                 socket.emit('USER_HEARTBEAT', username);
             }, 2500, username);
@@ -49,8 +50,18 @@ export const Container = ({messages}: IContainer) => {
                     users
                 })
             })
+
+            if (room && username) {
+                socket.on(`${JSON.stringify([room, username].sort()).toUpperCase}_CHANNEL`, (message: MessageObject) => {
+                    // dispatch({
+                    //     type: 'SET_CONNECTED_USERS',
+                    //     users
+                    // })
+                    console.log(message)
+                })
+            }
         }
-    }, [username])
+    }, [username, room])
 
     
     const toggleSettings = useCallback(() => {
@@ -59,13 +70,6 @@ export const Container = ({messages}: IContainer) => {
             visible: true
         })
     }, [])
-    
-    const setUnsafeUsername = React.useCallback(() => {
-        dispatch({
-            type: SET_UNSAFE_USERNAME,
-            username: null
-        })
-    }, [username])
 
     const unsetRoom = React.useCallback(() => {
         dispatch({
@@ -98,14 +102,12 @@ export const Container = ({messages}: IContainer) => {
                 <ConfigureUser />
             : (
                 <>
-                    {room === null ?
-                    <>
-                        <div className='primary-btn' onClick={setUnsafeUsername}>Go Back &nbsp;<FontAwesomeIcon icon={faChevronLeft} /></div>
-                        <ChatRooms />
-                    </>
+                    {room === null ? <ChatRooms />
                     : (
                         <>
                             <div className='primary-btn' onClick={unsetRoom}>Go Back &nbsp;<FontAwesomeIcon icon={faChevronLeft} /></div>
+                            <h2>Chat: {room}</h2>
+                            <hr />
                             <div className='messages-container'>
                                 {messages.map((el: any, key: number) => {
                                     return (

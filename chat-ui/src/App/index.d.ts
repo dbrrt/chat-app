@@ -19,5 +19,12 @@ export interface IMessageTile {
     isRecipient: boolean;
 }
 
-// declare module 'socket.io-client';
-
+export interface MessageObject {
+    sender: string;
+    recipient: string;
+    message: {
+        type: string;
+        payload: string;
+    },
+    ts: string
+}

@@ -32,11 +32,12 @@ export const ChatRooms = () => {
         )
       );
 
+    const ROOMS = users?.filter((el: string) => el !== username).length
+
     return (
         <div style={{ textAlign: 'center' }}>
-            <h1>Connected users ({users?.filter((el: string) => el !== username).length})</h1>
-            <hr style={{ maxWidth: '300px'}} />
-            <br />
+            <h2>Chat rooms {ROOMS && ROOMS > 0 ? <span>({ROOMS})</span> : null}</h2>
+            <hr />
             {users?.sort().filter((el: string) => el !== username)?.map((el: string, key: number) => {
                 return (
                     <div className='contact-block' key={key} style={{ padding: '2em' }} onClick={() => setRoom(el)}>

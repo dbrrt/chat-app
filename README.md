@@ -18,7 +18,7 @@ Roadmap:
 
 - SocketIO server
 - Events (integration socketIO client)
-- Redis cache (to save users, messages, etc...)
+- Redis cache (to persist connected users, etc...)
 - docker-compose definition
 
 - Tests

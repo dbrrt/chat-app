@@ -24,7 +24,7 @@ export const ConfigureUser = () => {
             <h2>Select an username</h2>
             <input className='input-username' onChange={(e: any) => setUsername(e.target.value)} />
             <br /><br />
-            {username.length > 0 && <button onClick={setUnsafeUsername} className='save-username-btn'>Get Started &nbsp;<FontAwesomeIcon icon={faRocket}/></button>}
+            {username.length > 0 && <button onClick={setUnsafeUsername} className='save-username-btn'>See rooms &nbsp;<FontAwesomeIcon icon={faRocket}/></button>}
         </div>
     )
 }

@@ -30,7 +30,7 @@ const CONNECTED_USERS_INIT = {
 }
 
 const INIT_STATE: IGlobalState = {
-    input_message_box_visible: false,
+    input_message_box_visible: true,
     settings_modal_visible: false,
     ...SETTINGS_MODAL_INIT,
     ...SETTINGS_USER_INIT,
