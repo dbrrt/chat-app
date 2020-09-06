@@ -39,10 +39,9 @@ export const RoomShell = () => {
         socket.on('MESSAGE_BROADCAST', (message: IMessage) => {
             setMessages([ ...messages, message ])
         })
-
-        const ROOM_ID = [username, room].sort().join('___').toUpperCase()
         
         if (room) {
+            const ROOM_ID = [username, room].sort().join('___').toUpperCase()
             socket.emit('join', ROOM_ID)
         }
 
