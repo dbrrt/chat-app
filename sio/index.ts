@@ -15,12 +15,14 @@ export interface MessageObject {
   ts: string
 }
 
-const clearUsersList = () => {
-  const redis = new Redis({
+const REDIS_CFG = {
     host: process.env.REDIS_HOSTNAME,
     lazyConnect: false,
     enableOfflineQueue: true
-  })
+  }
+
+const clearUsersList = () => {
+  const redis = new Redis(REDIS_CFG)
 
   redis.on('connect', async () => {
     await redis.ltrim(LIST_CACHE_USERS, -1, 0)
@@ -47,11 +49,7 @@ io.on("connection", (socket: any) => {
   });
 
   socket.on("USER_HEARTBEAT", (username: string) => {
-      const redis = new Redis({
-        host: process.env.REDIS_HOSTNAME,
-        lazyConnect: false,
-        enableOfflineQueue: true
-      })
+      const redis = new Redis(REDIS_CFG)
 
       redis.on('error', (e: any) => {
         console.log(e)
