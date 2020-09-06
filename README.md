@@ -84,7 +84,8 @@ Once another user will connect, you'll see appearing the name in the list automa
 Once a user select your name (and you select the user's name), you'll be able to communicate.
 To activate the Input message box, you'll need to click on the Red Float Action Button with a Chat icon (bottom right).
 
-If Text is add to the box, you can send message to the user by pressing the "Send message" button, or pressing Enter if that option is Active.
+If some text is added to the box, you can send message to the user by pressing the "Send message" button, or pressing Enter if that option is Active.
+Note that if you add a picture link, such as `https://d2toaicwmkfk0u.cloudfront.net/wp-content/uploads/2019/01/02132842/backdrop31.jpg`, the recipient will see an image instead of the link.
 
 <img src="https://i.ibb.co/VLGHMH8/chat-room.png" alt="chat-room" border="0" width="400">
 
