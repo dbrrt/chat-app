@@ -1,6 +1,6 @@
 # Chat App
 
-Chat App is a basic chat application where multiple users can interact and exchange messages through socket-io
+Chat App is a basic chat application where multiple users can interact and exchange messages through socket-io.
 
 # Get started
 
@@ -19,6 +19,11 @@ in another tab:
 
 Then open a browser following link below:
 - `http://localhost:5000/html`
+
+## Starting Server stack
+
+- `docker-compose up` at the root of the project
+
 
 # Roadmap
 
@@ -54,20 +59,35 @@ Then open a browser following link below:
 - Adding docker configuration for front-end
 - Configuring Prettier
 
-# Showcase
+# Application Walkthrough
 
 ## Landing Page
 
+Once the application is started, you'll see a screen similar to the one below:
+
 <img src="https://i.ibb.co/QKZm7dS/welcome.png" alt="welcome" border="0" width="400">
+
+Pick a username, this username will be visible to other users.
 
 ## Connected Users
 
+Once you've selected a username, you'll land on a screen similar to the one below:
+
 <img src="https://i.ibb.co/X21vrQW/chat-rooms.png" alt="chat-rooms" border="0" width="400">
 
+Once another user will connect, you'll see appearing the name in the list automatically.
+
 ## Chat Room
+
+Once a user select your name (and you select the user's name), you'll be able to communicate.
+To activate the Input message box, you'll need to click on the Red Float Action Button with a Chat icon (bottom right).
+
+If Text is add to the box, you can send message to the user by pressing the "Send message" button, or pressing Enter if that option is Active.
 
 <img src="https://i.ibb.co/VLGHMH8/chat-room.png" alt="chat-room" border="0" width="400">
 
 ## Settings Overlay
+
+Clicking on Settings in the navbar area will open a Modal view similar as below, where you'll be able to configure couple of options and reset them.
 
 <img src="https://i.ibb.co/0j8JB7t/settings-overlay.png" alt="settings-overlay" border="0" width="400">
