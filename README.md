@@ -58,12 +58,16 @@ Then open a browser following link below:
 
 ## Landing Page
 
-<img src="https://i.ibb.co/QKZm7dS/welcome.png" alt="welcome" border="0">
+<img src="https://i.ibb.co/QKZm7dS/welcome.png" alt="welcome" border="0" width="400">
 
 ## Connected Users
 
-<img src="https://i.ibb.co/X21vrQW/chat-rooms.png" alt="chat-rooms" border="0">
+<img src="https://i.ibb.co/X21vrQW/chat-rooms.png" alt="chat-rooms" border="0" width="400">
 
 ## Chat Room
 
-<img src="https://i.ibb.co/VLGHMH8/chat-room.png" alt="chat-room" border="0">
+<img src="https://i.ibb.co/VLGHMH8/chat-room.png" alt="chat-room" border="0" width="400">
+
+## Settings Overlay
+
+<img src="https://i.ibb.co/0j8JB7t/settings-overlay.png" alt="settings-overlay" border="0" width="400">
