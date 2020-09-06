@@ -4,7 +4,7 @@ Chat App is a basic chat application where multiple users can interact and excha
 
 # Get started
 
-You'll need Docker and nodeJS (12) and `yarn` to use the app. Make sure to have a `.env` file to configure the environment variables of your app. You can follow `.env.tpl` as reference to achieve this.
+You'll need Docker and nodeJS (12) and `yarn` to use the app. Make sure to have a `.env` file to configure the environment variables of your app. You can follow `.env.tpl` file as reference to achieve this.
 
 First you'll need to install the front-end dependencies and build the app.
 
@@ -23,26 +23,26 @@ Then open a browser followin:
 # Roadmap
 
 ## Pre-requisites:
-- React with Babel/TypeScript [x]
-- SocketIO server [x]
-- Redis cache configuration [x]
+ - [x] React with Babel/TypeScript
+ - [x] SocketIO server
+ - [x] Redis cache configuration
 
 ## Application
- - UI/UX - Container [x]
- - UI/UX MessageTile [x]
- - UI/UX Responsive Design [x]
- - UI/UX Modal Overlay [x]
- - Display all users connected
- - Display messages per Chat room [x]
- - Keyboard Events [x]
- - Display Date format (12h-24h) [x]
- - Sending Message through SocketIO [x]
- - Text and Image (URI) messages support [x]
+ - [x] UI/UX - Container
+ - [x] UI/UX MessageTile
+ - [x] UI/UX Responsive Design
+ - [x] UI/UX Modal Overlay
+ - [x] Display all users connected
+ - [x] Display messages per Chat room
+ - [x] Keyboard Events
+ - [x] Display Date format (12h-24h)
+ - [x] Sending Message through SocketIO
+ - [x] Text and Image (URI) messages support
 
 ## Misc
- - User Heartbeat [x]
- - Redux Configuration [x]
- - Docker-compose definition [x]
+ - [x] User Heartbeat
+ - [x] Redux Configuration
+ - [x] Docker-compose definition
 
 ## Next steps:
 - Mocking SocketIO
