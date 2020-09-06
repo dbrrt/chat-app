@@ -24,8 +24,7 @@ export const Container = () => {
             inputBoxVisible: state.global.input_message_box_visible,
             modalSettingsVisible: state.global.settings_modal_visible,
             username: state.global.username,
-            room: state.global.room,
-            messages: state.global.messages_rooms
+            room: state.global.room
           }),
           []
         )

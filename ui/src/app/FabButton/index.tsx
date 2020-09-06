@@ -8,7 +8,6 @@ import { TOGGLE_INPUT_MESSAGE_BOX } from "../../store/constants";
 
 export const FabButton = () => {
     const dispatch = useDispatch()
-
     const toggleInputBox = React.useCallback(() => {
         dispatch({
             type: TOGGLE_INPUT_MESSAGE_BOX,

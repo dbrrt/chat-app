@@ -9,6 +9,3 @@ export const SET_CHAT_ROOM = 'SET_CHAT_ROOM'
 export const SIGN_OUT = 'SIGN_OUT'
 
 export const SET_CONNECTED_USERS = 'SET_CONNECTED_USERS'
-
-// TODO move those constants into another Reducers
-export const ADD_MESSAGE = 'ADD_MESSAGE'
