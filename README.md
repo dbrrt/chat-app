@@ -27,7 +27,7 @@ Then open a browser following link below:
 
 # Roadmap
 
-## Pre-requisites:
+## Pre-requisites
  - [x] React with Babel/TypeScript
  - [x] SocketIO server
  - [x] Redis cache configuration
@@ -49,7 +49,7 @@ Then open a browser following link below:
  - [x] Redux Configuration
  - [x] Docker-compose definition
 
-## Next steps:
+## Next steps
 - Mocking SocketIO
 - Integration Jest
 - Integration Storybook
