@@ -59,7 +59,7 @@ Then open a browser following link below:
 - Adding docker configuration for front-end
 - Configuring Prettier
 
-# Application Walkthrough
+# Application Walk-through
 
 ## Landing Page
 
