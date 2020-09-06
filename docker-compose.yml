@@ -1,9 +1,9 @@
 version: '3.1'
 
 services:
-  chat_app_srv:
+  chat_app_sio:
     build:
-      context: ./chat-srv
+      context: ./sio
       dockerfile: Dockerfile
     ports:
       - ${API_PORT}:8080
