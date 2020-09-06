@@ -4,7 +4,7 @@ Chat App is a basic chat application where multiple users can interact and excha
 
 # Get started
 
-You'll need `Docker`, `nodeJS` (12) and `yarn` to use the app. Make sure to have a `.env` file to configure the environment variables of your app. You can follow `.env.tpl` file as reference to achieve this.
+You'll need `Docker`, `nodeJS` (12+) and `yarn` to use the app. Make sure to have a `.env` file to configure the environment variables of your app. You can follow `.env.tpl` file as reference to achieve this.
 
 ## Build and serving UI
 
