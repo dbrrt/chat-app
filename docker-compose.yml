@@ -6,7 +6,7 @@ services:
       context: ./sio
       dockerfile: Dockerfile
     ports:
-      - ${API_PORT}:8080
+      - 5555:8080
     env_file:
       - ./.env
     volumes:
@@ -41,6 +41,13 @@ services:
       - chat-app-network
     depends_on:
       - chat_app_redis
+  
+  chat_app_web:
+    build:
+      context: ./ui
+      dockerfile: Dockerfile
+    networks:
+      - chat-app-network
 
 
 volumes:
