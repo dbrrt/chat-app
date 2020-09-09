@@ -6,26 +6,11 @@ Chat App is a basic chat application where multiple users can interact and excha
 
 You'll need `Docker`, `nodeJS` (12+) and `yarn` to use the app. Make sure to have a `.env` file to configure the environment variables of your app. You can follow `.env.tpl` file as reference to achieve this.
 
-## Build and serving UI
-
-First you'll need to install the front-end dependencies to build the app.
-
-Open a tab an execute the commands below:
-- `cd ui`
-- `yarn` // equivalent to yarn install
-- `yarn dev`
-
-in another tab:
-- `cd ui`
-- `yarn start`
-
-Then open a browser following link below:
-- `http://localhost:5000/html`
-
-## Starting Server stack
+## Starting Server stack and UI building
 
 - `docker-compose up` at the root of the project
 
+Then open the file `ui/html/index.html` in a browser in as many tabs you need users.
 
 # Roadmap
 
