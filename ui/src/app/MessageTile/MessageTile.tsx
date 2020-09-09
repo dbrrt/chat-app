@@ -24,7 +24,7 @@ export const MessageTile = ({sender, isRecipient, messageType, messagePayload, t
             <span className='message-tile-meta'>{getFormattedDate(timestamp, formatDate)} - <i className='message-tile-sender-meta'>Sent by {sender}</i></span>
             <br />
             {messageType === 'image' 
-                ? <img src={`${messagePayload}`} style={{ 'maxWidth': '-moz-available' }} />
+                ? <img className='image-tile' src={`${messagePayload}`} />
                 : messagePayload
             }
         </div>

@@ -87,3 +87,8 @@
 hr {
     border-style: ridge;
 }
+
+.image-tile {
+	max-width: -webkit-fill-available;
+	max-width: -moz-available;
+}
