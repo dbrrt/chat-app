@@ -17,7 +17,7 @@ services:
       - chat_app_redis
 
   chat_app_redis:
-    image: bitnami/redis:5.0.9
+    image: bitnami/redis:5.0.10
     user: root
     env_file:
       - ./.env
