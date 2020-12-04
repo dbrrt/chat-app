@@ -25,7 +25,7 @@
     "express": "4.17.1",
     "rollup": "2.34.1",
     "rollup-plugin-commonjs": "10.1.0",
-    "rollup-plugin-filesize": "9.0.2",
+    "rollup-plugin-filesize": "9.1.0",
     "rollup-plugin-json": "4.0.0",
     "rollup-plugin-node-builtins": "2.1.2",
     "rollup-plugin-node-globals": "1.4.0",
