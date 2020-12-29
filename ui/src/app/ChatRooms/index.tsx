@@ -37,7 +37,7 @@ export const ChatRooms = () => {
       useEffect(() => {
         const socket = io(ENDPOINT);
         if (username) {
-            setInterval((username: string) => {
+            const itv = setInterval((username: string) => {
                 socket.emit('USER_HEARTBEAT', username);
             }, 2500, username);
 
@@ -49,6 +49,7 @@ export const ChatRooms = () => {
             })
         }
         const cleanup = () => {
+            clearInterval(itv)
             socket.close()
         };
         return cleanup
