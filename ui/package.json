@@ -23,7 +23,7 @@
     "@types/styled-components": "5.1.7",
     "browser-sync": "2.26.13",
     "express": "4.17.1",
-    "rollup": "2.38.0",
+    "rollup": "2.38.1",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-filesize": "9.1.0",
     "rollup-plugin-json": "4.0.0",
